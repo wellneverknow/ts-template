@@ -36,3 +36,4 @@ jobs:
           GITHUB_BASE_REF: ${{ github.base_ref }}
           EXCLUDED_FILES: |
             static/test.ts
+            .github/empty-string-checker.ts
