@@ -77,6 +77,10 @@ async function main() {
 function parseDiffForEmptyStrings(diff: string) {
   const violations: Array<{ file: string; line: number; content: string }> = [];
   const diffLines = diff.split("\n");
+  const excludedFiles = (process.env.EXCLUDED_FILES || "")
+    .split("\n")
+    .map((file) => file.trim())
+    .filter(Boolean);
 
   let currentFile: string;
   let headLine = 0;
@@ -93,6 +97,11 @@ function parseDiffForEmptyStrings(diff: string) {
     if (line.startsWith("--- a/") || line.startsWith("+++ b/")) {
       currentFile = line.slice(6);
       inHunk = false;
+      return;
+    }
+
+    // Skip files in excludedFiles
+    if (excludedFiles.includes(currentFile)) {
       return;
     }
 
