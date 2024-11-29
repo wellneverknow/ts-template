@@ -117,7 +117,7 @@ function parseDiffForEmptyStrings(diff: string) {
 
     if (inHunk && line.startsWith("+")) {
       // Check for empty strings in TypeScript syntax
-      if (/^\+.*""/.test(line)) {
+      if (/^\+.*["']{2}/.test(line)) {
         // Ignore empty strings in comments
         if (!line.trim().startsWith("//") && !line.trim().startsWith("*")) {
           // Ignore empty strings in template literals
