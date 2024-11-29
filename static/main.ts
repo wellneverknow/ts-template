@@ -3,6 +3,7 @@ export async function mainModule() {
 }
 
 const v = '';
+const x = "";
 
 mainModule()
   .then(() => {
