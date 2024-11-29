@@ -34,6 +34,4 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
-          EXCLUDED_FILES: |
-            static/test.ts
-            .github/empty-string-checker.ts
+          EXCLUDED_FILES:
