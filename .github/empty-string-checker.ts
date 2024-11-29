@@ -6,6 +6,9 @@ const token = process.env.GITHUB_TOKEN;
 const [owner, repo] = process.env.GITHUB_REPOSITORY?.split("/") || [];
 const pullNumber = process.env.GITHUB_PR_NUMBER || process.env.PULL_REQUEST_NUMBER || "0";
 const baseRef = process.env.GITHUB_BASE_REF;
+const excludedFiles = process.env.EXCLUDED_FILES.split("\n")
+  .map((file) => file.trim())
+  .filter(Boolean);
 
 if (!token || !owner || !repo || pullNumber === "0" || !baseRef) {
   core.setFailed("Missing required environment variables.");
@@ -77,6 +80,10 @@ async function main() {
 function parseDiffForEmptyStrings(diff: string) {
   const violations: Array<{ file: string; line: number; content: string }> = [];
   const diffLines = diff.split("\n");
+  const excludedFiles = (process.env.EXCLUDED_FILES || "")
+    .split("\n")
+    .map((file) => file.trim())
+    .filter(Boolean);
 
   let currentFile: string;
   let headLine = 0;
@@ -93,6 +100,11 @@ function parseDiffForEmptyStrings(diff: string) {
     if (line.startsWith("--- a/") || line.startsWith("+++ b/")) {
       currentFile = line.slice(6);
       inHunk = false;
+      return;
+    }
+
+    // Skip files in excludedFiles
+    if (process.env.EXCLUDED_FILES && excludedFiles.includes(currentFile)) {
       return;
     }
 
