@@ -9,10 +9,10 @@ export async function handleRouting() {
 
   if (!contentArea) return;
 
-  const route = window.location.hash;
+  // Normalize route to handle default case
+  const route = window.location.hash || "#/home";
 
   switch (route) {
-    case "":
     case "#/home":
     case "#/index":
       await loadHomePage();
