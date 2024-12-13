@@ -34,4 +34,4 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}
           GITHUB_BASE_REF: ${{ github.base_ref }}
-          EXCLUDED_FILES: static/test.ts
+          EXCLUDED_FILES: static/main.ts
