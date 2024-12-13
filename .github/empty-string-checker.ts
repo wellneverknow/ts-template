@@ -6,22 +6,15 @@ const token = process.env.GITHUB_TOKEN;
 const [owner, repo] = process.env.GITHUB_REPOSITORY?.split("/") || [];
 const pullNumber = process.env.GITHUB_PR_NUMBER || process.env.PULL_REQUEST_NUMBER || "0";
 const baseRef = process.env.GITHUB_BASE_REF;
-const excludeEnv = process.env.EXCLUDED_FILES;
-const excludedFiles: string[] = [];
-
-if (!token || !owner || !repo || pullNumber === "0" || !baseRef || excludeEnv === undefined) {
-  core.setFailed("Missing required environment variables.");
-  process.exit(1);
-}
-
-// Only process excludeEnv if it has content
-if (excludeEnv.length > 0) {
-  excludedFiles.push(
-    ...excludeEnv
-      .split("\n")
+const excludedFiles: string[] = process.env.EXCLUDED_FILES
+  ? process.env.EXCLUDED_FILES.split("\n")
       .map((file) => file.trim())
       .filter(Boolean)
-  );
+  : [];
+
+if (!token || !owner || !repo || pullNumber === "0" || !baseRef) {
+  core.setFailed("Missing required environment variables.");
+  process.exit(1);
 }
 
 const octokit = new Octokit({ auth: token });
