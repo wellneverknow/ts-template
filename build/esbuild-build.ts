@@ -4,7 +4,7 @@ const typescriptEntries = ["src/main.ts"];
 const cssEntries = ["static/style.css"];
 const entries = [...typescriptEntries, ...cssEntries];
 
-const DATA_URL_LOADERS = [".png", ".woff", ".woff2", ".eot", ".ttf", ".svg", ".html"];
+const DATA_URL_LOADERS = [".png", ".woff", ".woff2", ".eot", ".ttf", ".svg"];
 
 export const esbuildOptions: BuildOptions = {
   sourcemap: true,
