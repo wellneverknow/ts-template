@@ -1,34 +1,27 @@
 export function create404Page(): string {
   return `
-    <div id="Page404">
-        <div>
-            <p>Oops!</p>
-            <p>We can't seem to find the page you're looking for</p>
-            <p>
-            <b>Here are some helpful links instead:</b>
-            </p>
-            <ul>
-            <li>
-                <a href="//github.com/ubiquity/ubiquity-dollar/wiki" target="_blank">Docs</a>
-            </li>
-            <li>
-                <a href="//dao.ubq.fi/faq" target="_blank">FAQ</a>
-            </li>
-            <li>
-                <a href="//github.com/ubiquity/ubiquity-dollar" target="_blank">Github</a>
-            </li>
-            <li>
-                <a href="//discord.gg/SjymJ5maJ4" target="_blank">Discord</a>
-            </li>
-            <li>
-                <a href="//t.me/ubiquitydao" target="_blank">Telegram</a>
-            </li>
-            <li>
-                <a href="//x.com/UbiquityDAO" target="_blank">X</a>
-            </li>
-            </ul>
-        </div>
-    <div> 404 </div>
-    </div>
+        <main class="err-container">
+            <div class="err-content">
+                <h1>Sorry!</h1>
+                <p class="err-subtitle">We can't seem to find the page you're looking for</p>
+                
+                <div class="err-links">
+                    <h2>Here are some helpful links instead:</h2>
+                    
+                    <div class="err-links-grid">
+                        <a href="https://github.com/ubiquity/ubiquity-dollar/wiki" class="err-nav-link">DOCS</a>
+                        <a href="https://dao.ubq.fi/faq" class="err-nav-link">FAQ</a>
+                        <a href="https://github.com/ubiquity/ubiquity-dollar" class="err-nav-link">GITHUB</a>
+                        <a href="https://discord.com/invite/SjymJ5maJ4" class="err-nav-link">DISCORD</a>
+                        <a href="https://t.me/ubiquitydao" class="err-nav-link">TELEGRAM</a>
+                        <a href="https://twitter.com/UbiquityDAO" class="err-nav-link">TWITTER</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="err-code">
+                404
+            </div>
+        </main>
 `;
 }
