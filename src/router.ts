@@ -1,6 +1,6 @@
 import { loadPage1 } from "./controllers/page1";
 import { loadPage2 } from "./controllers/page2";
-import { load404Page } from "./controllers/404";
+import { redirectTo404 } from "./controllers/404";
 import { loadHomePage } from "./controllers/home";
 
 // URL Path based routing
@@ -25,7 +25,7 @@ export async function handleRouting() {
       break;
     default:
       // Redirect to 404 page if no route matches
-      await load404Page();
+      await redirectTo404();
       break;
   }
 }

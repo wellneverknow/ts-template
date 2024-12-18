@@ -1,11 +1,9 @@
-import { create404Page } from "../components/404";
-export async function load404Page() {
+export async function redirectTo404() {
   const contentArea = document.getElementById("content-area");
 
   if (contentArea) {
     try {
-      const content = create404Page();
-      contentArea.innerHTML = content;
+      window.location.href = "https://dao.ubq.fi/404";
     } catch (error) {
       console.error("Failed to load 404 page:", error);
     }
